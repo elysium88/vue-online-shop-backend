@@ -1,5 +1,7 @@
 const Model = require('../model');
-const { Manufacturer } = Model;
+const {
+  Manufacturer
+} = Model;
 
 const manufacturerController = {
   all(req, res) {
@@ -10,7 +12,9 @@ const manufacturerController = {
     const idParams = req.params.id;
 
     Manufacturer
-      .findOne({ _id: idParams })
+      .findOne({
+        _id: idParams
+      })
       .exec((err, manufacturer) => res.json(manufacturer));
   },
   create(req, res) {
@@ -20,7 +24,9 @@ const manufacturerController = {
     console.log(newManufacturer)
     newManufacturer.save((err, saved) => {
       Manufacturer
-        .findOne({ _id: newManufacturer._id })
+        .findOne({
+          _id: newManufacturer._id
+        })
         .exec((err, manfacturer) => res.json(manfacturer))
     })
   },
@@ -28,14 +34,20 @@ const manufacturerController = {
     const idParams = req.params.id;
     let manufacturer = req.body;
 
-    Manufacturer.updateOne({ _id: idParams }, { ...manufacturer }, (err, updated) => {
+    Manufacturer.updateOne({
+      _id: idParams
+    }, {
+      ...manufacturer
+    }, (err, updated) => {
       res.json(updated);
     })
   },
   remove(req, res) {
     const idParams = req.params.id;
 
-    Manufacturer.findOne({ _id: idParams }).remove( (err, removed) => res.json(idParams) )
+    Manufacturer.findOne({
+      _id: idParams
+    }).remove((err, removed) => res.json(idParams))
   }
 }
 
